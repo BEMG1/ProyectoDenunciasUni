@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido al Sistema de Denuncias</h1>
+        <p>¿Desea poner una demanda?</p>
+        <form action="{{ url_for('denunciar') }}" method="get">
+            <button type="submit">Poner una demanda</button>
+        </form>
+        <p>¿Desea iniciar sesión?</p>
+        <a href="{{ url_for('login') }}">
+            <button>Login</button>
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Denuncia Anónima</title>
+</head>
+<body>
+    <a href="{{ url_for('index')}}" class="home-button">
+        <img src="{{ url_for('static', filename='images/casa.png') }}" alt="Inicio" class="home-icon">
+    </a>
+    <div class="containerD">
+        <div class="radicar-container">
+            <h2>Denunciar Anónimamente</h2>
+            <form method="POST">
+                <textarea name="denuncia" placeholder="Escribe tu denuncia aquí..." required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <div class="denuncias-subcontainer">
+            <h3>Denuncias Existentes:</h3>
+            <div class="denuncias-scroll-container">
+            <table class="denuncias-table">
+                <thead>
+                    <tr>
+                        <th>Denuncia</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for denuncia in denuncias %}
+                        <tr>
+                            <td>{{ denuncia.denuncia }}</td>
+                            <td>{{ denuncia.fecha.strftime('%B %d, %Y %I:%M %p') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var modal = document.getElementById("ModalSuccess");
+                        var modalMessage = document.getElementById("modalMessage");
+                        modalMessage.textContent = "{{ messages[0] }}";
+                        modal.style.display = "block"; 
+                    });
+                </script>
+            {% endif %}
+        {% endwith %}
+        </div>
+    </div>
+
+    <div class="modal" id="ModalSuccess" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+    <script>
+        function closeModal() {
+            var modal = document.getElementById("ModalSuccess");
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            var modal = document.getElementById("ModalSuccess");
+            if (event.target == modal){
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

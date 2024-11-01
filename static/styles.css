@@ -1,0 +1,433 @@
+body {
+    background-image: url('/static/images/background1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: #000000; 
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+
+.container {
+    background-color: rgba(242, 242, 242, 0.644); 
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgb(0, 0, 0);
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    color: #d1d1d1;
+    text-shadow: 
+        -1px -1px 5px black,  
+         1px -1px 5px black,
+        -1px  1px 5px black,
+         1px  1px 5px black;
+}
+
+h2, h3 {
+    font-weight: bold;
+    color: #1b1b1b;
+    
+}
+
+button {
+    background-color: #8d8d8d; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px;
+    border: 1px solid #000;
+}
+
+button:hover {
+    background-color: #e07b00; /
+}
+
+a {
+    color: #002F6C;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+    
+/* Estilos de formulario */
+
+.login-form {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    border: 1px solid #002F6C;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 90%;
+    transition: border-color 0.2s;
+}
+
+/* input[type="submit"] {
+    background-color: #FF8C00; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+} */
+
+
+/* input[type="submit"]:hover {
+    background-color: #e07b00; 
+} */
+
+.btn-primary {
+    background-color: #8d8d8d; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    text-decoration: none;
+    background-color: #e07b00;
+}
+.BtnReturn {
+    background-color: #8d8d8d; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.BtnReturn:hover {
+    /* text-decoration: none; */
+    background-color: #2200e0;
+}
+
+label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: rgb(94, 94, 94);
+    transition: all 0.2s;
+    pointer-events: none;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+    top: -15px;
+    left: 5px;
+    color: #000000;
+    font-size: 12px;
+}
+
+input:focus {
+    border-color: #FF8C00;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4); 
+    padding-top: 60px; 
+}
+
+.modal-content {
+    background-color: rgba(242, 242, 242, 0.9); 
+    margin: 10% auto; 
+    padding: 20px;
+    border: 1px solid #002F6C; 
+    border-radius: 8px; 
+    width: 300px; 
+    position: relative; 
+}
+
+.close {
+    color: #aaa;
+    position: absolute; 
+    top: 10px; 
+    right: 15px; 
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Mensajes de error */
+ul {
+    list-style-type: none;
+    padding: 0;
+    color: #FF8C00; /* Color de los mensajes de error */
+}
+
+
+/* modal denunciar */ 
+
+.containerD {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 8px;
+    height: 90%;
+    width: 90%;
+    text-align: center;
+}
+
+.radicar-container {
+    background-color: rgba(242, 242, 242, 0.644); 
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; 
+}
+
+textarea {
+    width: 95%;
+    height: 100px;
+    border: 2px solid #4e4e4e;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    resize: none;
+    background-color: #F8F9FA;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    overflow: auto;
+}
+
+textarea:focus {
+    border-color: #2c2c2c;
+    box-shadow: 0 4px 12px rgba(214, 214, 214, 0.582);
+    outline: none;
+}
+
+.denuncias-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    max-height: 200px; /* Altura máxima */
+    width: 70%;
+    overflow-y: auto; /* Scroll vertical */
+}
+
+.denuncias-subcontainer {
+    background-color: rgba(242, 242, 242, 0.644); 
+    display: flex;
+    flex-direction: column; 
+    border-radius: 10px;
+    align-items: center;
+}
+
+
+.denuncias-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.denuncias-scroll-container {
+    max-height: 200px;
+    overflow-y: auto; 
+    
+    margin: 20px 0; 
+    width: 90%;
+}
+
+.denuncias-table th, .denuncias-table td {
+    border: 1px solid #000000;
+    color: #000000;
+    padding: 10px;
+    text-align: left;
+    word-wrap: break-word;
+    max-width: 150px;
+}
+
+.denuncias-table th {
+    background-color: #757575;
+    color: #1b1b1b; 
+}
+
+.denuncias-table tr:nth-child(even) {
+    background-color: #F2F2F2;
+}
+
+.denuncias-table tr:nth-child(odd) {
+    background-color: #2c2c2c56;
+}
+
+
+.home-button {
+    position: fixed;
+    top: 20px; 
+    left: 20px; 
+    display: inline-block; 
+    padding: 10px 15px; 
+    background-color: #999999;
+    border: none; 
+    border-radius: 50px;
+    text-decoration: none; 
+    transition: background-color 0.3s; 
+    z-index: 1000; 
+}
+
+.home-button:hover {
+    background-color: #303030; 
+}
+
+.home-icon {
+    width: 20px; 
+    height: auto; 
+}
+
+/* modal admin */
+
+.containerA {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 8px;
+    height: 90%;
+    width: 90%;
+    text-align: center;
+}
+
+.denuncias-subcontainerA {
+    background-color: rgba(242, 242, 242, 0.644); 
+    display: flex;
+    flex-direction: column; 
+    border-radius: 10px;
+    align-items: center;
+    height: 100%;
+}
+
+.denuncias-scroll-containerA {
+    max-height: 500px;
+    overflow-y: auto; 
+    margin: 20px 0; 
+    width: 90%;
+}
+
+.logout-button {
+    position: fixed;
+    top: 20px; 
+    left: 20px; 
+    display: inline-block; 
+    padding: 10px 15px; 
+    background-color: #999999;
+    border: none; 
+    border-radius: 50px;
+    text-decoration: none; 
+    transition: background-color 0.3s; 
+    z-index: 1000; 
+}
+
+.logout-button:hover {
+    background-color: #303030; 
+}
+
+.logout-icon {
+    width: 20px; 
+    height: auto; 
+}
+
+.acciones-col {
+    width: 10%;
+}
+
+.fecha-col {
+    width: 20%;
+}
+
+.icon-delete {
+    width: 20px; 
+    height: auto; 
+    transition: transform 0.3s;
+    margin-left: 40%;
+}
+
+.icon-delete:hover {
+    transform: scale(1.3);
+    /* box-shadow: 0 0 5px rgba(61, 58, 39, 0.6); */
+}
+
+
+/* Estilos del modal Admin */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
