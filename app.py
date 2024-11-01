@@ -4,7 +4,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user
 from werkzeug.security import check_password_hash
 import pytz
 from datetime import datetime
-from forms import LoginForm
+from forms import LoginForm, ForgotPasswordForm, ResetPasswordForm
 from models import db, User, Denuncia
 
 
@@ -29,6 +29,18 @@ with app.app_context():
 def index():
     form = LoginForm()
     return render_template('index.html', form = form)
+
+# @app.route('/forgotPassword')
+# def forgotPassword():
+#     form = ForgotPasswordForm()
+#     if form.validate_on_sumbit():
+#         user = User.query.filter_by(email=form.email.data).first()
+#         if user:
+#             token = user.get_reset_password_token()
+#             send_reset_email(user, token)
+#             flash('Un correo con instrucciones para restablecer la contraseña ha sido enviado.', 'info')
+#             return redirect(url_for('login'))
+#     return render_template('ForgotPassword.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

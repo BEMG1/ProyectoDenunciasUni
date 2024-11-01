@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 with app.app_context():
     try:
 
-        user1 = User(id=5, username=':(', password=generate_password_hash('1234'))
+        user1 = User(id=7, email='brianmoya777@gmail.com', username='TestCorreo', password=generate_password_hash('1234'))
         # user2 = User(id=2, username='user', password=generate_password_hash('12345'))
 
 

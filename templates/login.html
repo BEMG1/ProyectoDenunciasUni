@@ -7,9 +7,16 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="container">
+    <video class="video-background" autoplay loop muted playsinline>
+        <source src="/static/images/background.mp4" type="video/mp4">
+        Tu navegador no soporta el video 
+    </video>
+    <div class="container-login">
         <div class="title">
-            <h1>Iniciar Sesión</h1>
+            <h1 class="title-modal">A.R.S</h1>
+        </div>  
+        <div class="subtitle">
+            <h1 class="subtitle-modal">Welcome</h1>
         </div>  
         <div class="form-container">
         <form method="POST" action="{{ url_for('login') }}" class="login-form">
@@ -21,10 +28,12 @@
                 <input type="password" name="password" id="password" class="form-control" required placeholder=" ">
                 <label for="password">Contraseña:</label>
             </div>
-
-            <div>
-                <input type="submit" value="Iniciar Sesión" class="btn-primary">
-                <a href="{{url_for('index')}}" class="BtnReturn">Volver</a>
+            <!-- <div class="forgot-password">
+                <a href="{{url_for('forgotPassword')}}" class="forgotPassword">¿Forgot your password?</a>
+            </div> -->
+            <div class="container-btn">
+                <input type="submit" value="Sign in" class="btn-primary">
+                <!-- <a href="{{url_for('index')}}" class="BtnReturn">Volver</a> -->
             </div>
         </form>
 

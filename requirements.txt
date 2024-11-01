@@ -1,7 +1,14 @@
-pip install Flask
-pip install Flask-SQLAlchemy
-pip install Flask-Login
-pip install Werkzeug
-pip install pytz
-pip install Flask-WTF
-pip install WTForms
+Flask
+Flask-SQLAlchemy
+Flask-Login
+Werkzeug
+pytz
+Flask-WTF
+WTForms
+Flask-Mail
+
+
+
+# comando para instalar 
+# nrtu dzfd lrno lvda
+# pip install -r requirements.txt
