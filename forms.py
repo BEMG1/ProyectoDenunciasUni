@@ -9,9 +9,9 @@ class LoginForm(FlaskForm):
 
 class ForgotPasswordForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
-    sumbit = SubmitField('Enviar')
+    submit = SubmitField('Enviar')
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('nueva contraseña', validators=[DataRequired()])
     confirm_password = PasswordField('Confirmas nueva contraseña', validators=[DataRequired(), EqualTo('password')])
-    sumbit = SubmitField('Restablecer contraseña')
+    submit = SubmitField('Restablecer contraseña')

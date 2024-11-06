@@ -1,3 +1,4 @@
+# from app import db, app
 from app import db, app
 from models import User
 from werkzeug.security import generate_password_hash

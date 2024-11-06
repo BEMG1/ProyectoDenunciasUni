@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user
 from werkzeug.security import check_password_hash
 import pytz
+import secrets
+import string
 from datetime import datetime
 from forms import LoginForm, ForgotPasswordForm, ResetPasswordForm
 from models import db, User, Denuncia
@@ -30,18 +32,6 @@ def index():
     form = LoginForm()
     return render_template('index.html', form = form)
 
-# @app.route('/forgotPassword')
-# def forgotPassword():
-#     form = ForgotPasswordForm()
-#     if form.validate_on_sumbit():
-#         user = User.query.filter_by(email=form.email.data).first()
-#         if user:
-#             token = user.get_reset_password_token()
-#             send_reset_email(user, token)
-#             flash('Un correo con instrucciones para restablecer la contraseña ha sido enviado.', 'info')
-#             return redirect(url_for('login'))
-#     return render_template('ForgotPassword.html')
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     
@@ -60,6 +50,32 @@ def login():
 
     return render_template('login.html')
 
+
+
+@app.route('/forgotPassword', methods=['GET', 'POST'])
+def forgotPassword():
+    form = ForgotPasswordForm()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            return redirect(url_for('resetPassword', email=user.email))
+        else: 
+            flash('El correo electrónico no se encuentra registrado', 'danger')
+    return render_template('ForgotPassword.html', form=form)
+
+
+@app.route('/resetPassword', methods=['GET', 'POST'])
+def resetPassword():
+    email = request.args.get('email')
+    user = User.query.filter_by(email = email).first()
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Tu contraseña ha sido actualizada', 'success')
+        return redirect(url_for('resetPassword', email = email))
+    return render_template('ResetPassword.html', form = form)
 
 @app.route('/admin_dashboard')
 @login_required

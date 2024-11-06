@@ -6,9 +6,9 @@ pytz
 Flask-WTF
 WTForms
 Flask-Mail
+email-validator
 
 
 
 # comando para instalar 
-# nrtu dzfd lrno lvda
 # pip install -r requirements.txt
