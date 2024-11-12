@@ -15,14 +15,16 @@
         <img src="{{ url_for('static', filename='images/casa.png') }}" alt="Inicio" class="home-icon">
     </a>
     <div class="containerD">
-        <div class="radicar-container">
+        <div class="denuncia-bar" id="denunciaBar" onclick="toggleDenunciaForm()">¿Quieres realizar una denuncia de forma anonima?</div>
+        <div class="radicar-container" id="denunciaForms">
             <h2>Denunciar Anónimamente</h2>
-            <form method="POST">
-                <textarea name="denuncia" placeholder="Escribe tu denuncia aquí..." required></textarea>
+            <form id="denunciaForm" method="POST" onsubmit="return showConfirmationModal(event)">
+                <textarea name="denuncia" id="denunciaTextarea" placeholder="Escribe tu denuncia aquí..." required></textarea>
                 <button type="submit">Enviar</button>
             </form>
+            <div class="close-btn" onclick="toggleDenunciaForm()"></div>
         </div>
-        <div class="denuncias-subcontainer">
+        <div class="denuncias-subcontainer" id="denuncias-subcontainer">
             <h3>Denuncias Existentes:</h3>
             <div class="denuncias-scroll-container">
             <table class="denuncias-table">
@@ -47,6 +49,7 @@
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         var modal = document.getElementById("ModalSuccess");
+                        var modal1 = document.getElementById("ModalConfirmation");
                         var modalMessage = document.getElementById("modalMessage");
                         modalMessage.textContent = "{{ messages[0] }}";
                         modal.style.display = "block"; 
@@ -63,17 +66,89 @@
             <p id="modalMessage"></p>
         </div>
     </div>
+    <div class="modal" id="ModalConfirmation" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage">¿Estás seguro de que deseas enviar esta denuncia?</p>
+            <button id="modalConfirmBtn">Confirmar</button>
+            <button id="modalCancelBtn">Cancelar</button>
+        </div>
+    </div>
     <script>
-        function closeModal() {
-            var modal = document.getElementById("ModalSuccess");
-            modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-            var modal = document.getElementById("ModalSuccess");
-            if (event.target == modal){
-                closeModal();
+
+        function toggleDenunciaForm() {
+            var formContainer = document.getElementById("denunciaForms");
+            var barElement = document.getElementById("denunciaBar");
+            var subcontainer = document.getElementById("denuncias-subcontainer");
+
+            if (formContainer.classList.contains("active")) {
+                formContainer.classList.remove("active");
+                barElement.classList.remove("hidden");
+                subcontainer.classList.remove("hidden");
+            } else {
+                subcontainer.classList.add("hidden");
+                formContainer.classList.add("active");
+                barElement.classList.add("hidden");
             }
         }
+
+        function showConfirmationModal(event) {
+            //Previene el envio del formulario
+            event.preventDefault();
+
+            // Mostrar el modal
+            var modal = document.getElementById("ModalConfirmation");
+            modal.style.display = "block";
+
+            // Configurar botones de Confirmar y Cancelar
+            var confirmBtn = document.getElementById("modalConfirmBtn");
+            var cancelBtn = document.getElementById("modalCancelBtn");
+
+            // Acción al hacer clic en Confirmar
+            confirmBtn.onclick = function() {
+                document.getElementById("denunciaForm").submit(); 
+                modal.style.display = "none";
+            };
+
+            // Acción al hacer clic en Cancelar
+            cancelBtn.onclick = function() {
+                modal.style.display = "none"; 
+            };
+
+            return false;
+        }
+
+
+        function closeModal() {
+            var modal = document.getElementById("ModalConfirmation");
+            var modal1 = document.getElementById("ModalSuccess");
+            if (modal)
+            {
+                modal.style.display = "none";
+            }
+            if (modal1)
+            {
+                modal1.style.display = "none";
+            }
+            
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("ModalSuccess");
+            var modal1 = document.getElementById("ModalConfirmation");
+            
+            if (event.target == modal || event.target == modal1){
+                closeModal();
+            }  
+            
+        }
+
+        document.getElementById("denunciaTextarea").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                showConfirmationModal(event);
+            }
+        });
     </script>
 </body>
 </html>

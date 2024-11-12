@@ -336,6 +336,35 @@ ul {
 
 /* modal denunciar */ 
 
+
+.denuncia-bar {
+    width: 90%;
+    padding: 15px;
+    text-align: center;
+    background-color: #4e4e4e;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    max-height: 50px;
+    margin: 0 50px;
+    border: 2px solid #000;
+}
+
+.denuncia-bar:hover {
+    background-color: #242424;
+}
+
+.denuncia-bar.expanded {
+    max-height: 300px; 
+    padding: 20px;
+}
+
+.denuncia-bar.hidden {
+    display: none;
+}
+
 .containerD {
     background-color: transparent;
     padding: 20px;
@@ -351,9 +380,46 @@ ul {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; 
+    margin: 5px 5px 20px 5px; 
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s;
+    visibility: hidden;
+    position: relative;
 }
 
+.radicar-container.active {
+    opacity: 1;
+    visibility: visible;
+    max-height: 500px; 
+}
+
+.close-btn {
+    text-align: center;
+    background-color: #5a5a5a;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    height: 25px;
+    line-height: 30px;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    z-index: -1;
+    transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #6b6b6b;
+}
+
+.denuncia-bar.active {
+    display: none;
+}
 textarea {
     width: 95%;
     height: 100px;
@@ -380,9 +446,9 @@ textarea:focus {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin: 20px 0;
-    max-height: 200px; /* Altura máxima */
+    max-height: 200px; 
     width: 70%;
-    overflow-y: auto; /* Scroll vertical */
+    overflow-y: auto; 
 }
 
 .denuncias-subcontainer {
@@ -391,6 +457,12 @@ textarea:focus {
     flex-direction: column; 
     border-radius: 10px;
     align-items: center;
+    height: 80%;
+}
+
+.denuncias-container.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 
@@ -400,9 +472,8 @@ textarea:focus {
 }
 
 .denuncias-scroll-container {
-    max-height: 200px;
+    max-height: 800px;
     overflow-y: auto; 
-    
     margin: 20px 0; 
     width: 90%;
 }
@@ -471,6 +542,7 @@ textarea:focus {
     border-radius: 10px;
     align-items: center;
     height: 100%;
+    margin: 5px;
 }
 
 .denuncias-scroll-containerA {
