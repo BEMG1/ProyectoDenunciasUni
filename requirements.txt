@@ -7,8 +7,3 @@ Flask-WTF
 WTForms
 Flask-Mail
 email-validator
-
-
-
-# comando para instalar 
-# pip install -r requirements.txt
