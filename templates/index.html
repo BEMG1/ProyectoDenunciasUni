@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/LogoOjo.png')}}" type="image/x-icon">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet'>
+    <title>Anonymous Complaint</title>
 </head>
 <body>
-    <video class="video-background" autoplay loop muted playsinline>
-        <source src="/static/images/background.mp4" type="video/mp4">
-        Tu navegador no soporta el video 
-    </video>
-    <div class="container-index">
-        <h1>Anonymous Reporting System </h1>
-        <div class="content-container">
-            <div class="denuncia-container">
-                <p>¿Desea poner una demanda?</p>
-                <form action="{{ url_for('denunciar') }}" method="get">
-                    <button type="submit">Poner una demanda</button>
-                </form>
+    <div class="container">
+        <div class="left-section">
+            <img src="/static/images/LogoOjo.png" alt="Logo" class="logo">
+            <div class="text-container">
+                <h2 class="small-text">NO TE QUEDES</h2>
+                <h1 class="large-text">CALLADO</h1>
             </div>
-            <div class="border-divider"></div>
-            <div class="login-container">
-                <p>¿Desea iniciar sesión?</p>
-                <a href="{{ url_for('login') }}">
-                    <button>Login</button>
-                </a>
+        </div>
+        <div class="right-section">
+            <div class="header">
+                <a href="#">INICIO</a>
+                <a href="#">¿QUIENES SOMOS?</a>
+                <a href="{{ url_for('login')}}"><img src="/static/images/amigo.png" alt="Friends Logo" class="friends-logo"></img></a>
             </div>
+            <div class="logo-section">
+                <img src="/static/images/Logo.png" alt="Anonymous Logo" class="anonymous-logo">
+            </div>
+            <p class="tagline">Ponle fin para tener <br> un principio</p>
+            <form action="{{ url_for('denunciar') }}" method="get">
+                <button type="submit" class="denuncia-button">DENUNCIA</button>
+            </form>
         </div>
     </div>
 </body>

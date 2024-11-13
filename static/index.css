@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Palanquin', sans-serif;
+    font-weight: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.left-section {
+    background-image: url('/static/images/indexBackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 65%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.left-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; 
+}
+
+.left-section .message,
+.left-section h2,
+.left-section h1,
+.left-section .logo {
+    position: relative;
+    z-index: 2; /* Asegura que el contenido esté encima del overlay */
+}
+
+
+.right-section {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-section .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+}
+
+.text-container {
+    position: absolute;
+    top: 65%; 
+    right: 20px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+.small-text {
+    font-size: 2em;
+    font-weight: normal;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    margin-bottom: 2%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.large-text {
+    font-size: 8em;
+    font-weight: bold;
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.left-section .message {
+    text-align: center;
+}
+
+
+.right-section {
+    background-color: #ffffff;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.header {
+    align-self: flex-end;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header a {
+    margin: 0 10px;
+    color: #000;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.header a:hover {
+    transform: scale(1.05);
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25%;
+}
+
+.anonymous-logo {
+    width: 250px;
+}
+
+.friends-logo {
+    width: 30px;
+    transition: transform 0.3s ease;
+}
+
+.friends-logo:hover {
+    transform: scale(1.05);
+}
+
+.logo-section h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.tagline {
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.denuncia-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.denuncia-button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+
+}
