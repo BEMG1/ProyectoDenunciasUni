@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='images/LogoOjo.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='images/EyeBlack.png')}}" type="image/x-icon">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet'>
     <title>Anonymous Complaint</title>
@@ -27,7 +27,7 @@
             <div class="logo-section">
                 <img src="/static/images/Logo.png" alt="Anonymous Logo" class="anonymous-logo">
             </div>
-            <p class="tagline">Ponle fin para tener <br> un principio</p>
+            <p class="tagline">Ponle fin para tener un principio</p>
             <form action="{{ url_for('denunciar') }}" method="get">
                 <button type="submit" class="denuncia-button">DENUNCIA</button>
             </form>

@@ -83,7 +83,7 @@ html, body {
 }
 
 .small-text {
-    font-size: 2em;
+    font-size: 50px;
     font-weight: normal;
     position: absolute;
     top: 30%;
@@ -94,7 +94,7 @@ html, body {
 }
 
 .large-text {
-    font-size: 8em;
+    font-size: 200px;
     font-weight: bold;
     position: absolute;
     bottom: 30%;
@@ -133,9 +133,10 @@ html, body {
     margin: 0 10px;
     color: #000;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 22px;
     font-weight: bold;
     transition: transform 0.3s ease;
+    margin: 0 43px;
 }
 
 .header a:hover {
@@ -150,7 +151,7 @@ html, body {
 }
 
 .anonymous-logo {
-    width: 250px;
+    width: 420px;
 }
 
 .friends-logo {
@@ -170,17 +171,17 @@ html, body {
 
 .tagline {
     color: #333;
-    font-size: 1.2rem;
+    font-size: 28px;
 }
 
 .denuncia-button {
     padding: 1rem 2.5rem;
-    font-size: 1.3rem;
+    font-size: 48px;
     background-color: #333;
     color: #fff;
     border: none;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: 1px;
     box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
