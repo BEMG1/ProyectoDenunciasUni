@@ -17,6 +17,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    font-family: 'Palanquin', sans-serif;
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -62,20 +63,42 @@ body {
 .container-login {
     background-color: white; 
     /* backdrop-filter: blur(10px); */
-    padding: 30px;
+    padding: 75px;
     /* border-radius: 8px; */
     box-shadow: 0 4px 10px rgb(0, 0, 0);
     /* max-width: 800px; */
     margin: auto;
     text-align: center;
-    width: 25%;
+    width: 12%;
+    position: relative;
 }
+
+.container-circle { 
+    width: 120px;
+    height: 120px;
+    background-color: #2a2a2a;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    top: -13%;
+    left: 34%;
+} 
 
 .content-container {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     width: 100%;
+}
+
+.logo {
+    width: 70%;
 }
 
 .denuncia-container .login-container {
@@ -107,19 +130,19 @@ body {
 
 .subtitle{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .subtitle-modal{
     color: #000000;
-    font-size: 20px;
+    font-size: 25px;
     margin-bottom: 15px;
 }
+
 
 h2, h3 {
     font-weight: bold;
     color: #1b1b1b;
-    
 }
 
 button {
@@ -158,7 +181,13 @@ a:hover {
 .input-container {
     position: relative;
     margin-bottom: 20px;
+    width: 120%;
+    left: -10%;
+    
 }
+
+
+
 
 /* input[type="text"],
 input[type="password"] {
@@ -196,7 +225,7 @@ input[type="password"] {
 }
 
 .form-control::placeholder {
-    color: #666;
+    color: #2a2a2a;
 }
 
 .form-control:focus {
@@ -210,14 +239,17 @@ input[type="password"] {
 /* Forgot Password */
 
 .forgot-password {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 15px;
+    /* display: absolute; */
+    /* justify-content: flex-start; */
+    position: relative;
+    margin: 20px 0;
+    left: -31%;
+    
 }
 
 .forgotPassword {
     color: #2200e0;
-    font-size: 15px;
+    font-size: 11px;
 }
 
 .forgotPassword:hover {
@@ -239,6 +271,8 @@ input[type="password"] {
 .container-btn {
     display: flex;
     justify-content: flex-end;
+    position: relative;
+    bottom: 10%;
 }
 .btn-primary {
     background-color: #8d8d8d; 
@@ -277,6 +311,7 @@ label {
     color: rgb(94, 94, 94);
     transition: all 0.2s;
     pointer-events: none;
+    font-size: 12px;
 }
 
 input:focus + label,
