@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='denunciaForm.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet'>
+    <title>Denuncia Anónima</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <div class="header-icons">
+                <a href="{{ url_for('denunciar')}}" class="home-button">
+                    <img src="{{ url_for('static', filename='images/atras.png') }}" alt="Inicio" class="home-icon">
+                </a>
+                <h1>INGRESA TU DENUNCIA</h1>
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="logo" class="logo-icon">
+                </div>
+            </div>
+            
+            <div class="subTitle">
+                <p>Ingresa los datosa requeridos para que generar la denuncia, es importante que diligencie de forma detallada <br> cada informacion solocitada, apartr del procedemiento tomaremos cartas en el asuto para poder tener <br> una resolucion del problema dentro de 24 a 72 horas</p>
+            </div>
+        </div>
+        <div class="denuncias-subcontainer" id="denuncias-subcontainer">
+            <!-- Aquí se muestran los mensajes si existen -->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var modal = document.getElementById("ModalSuccess");
+                        var modalMessage = document.getElementById("modalMessage");
+                        modalMessage.textContent = "{{ messages[0] }}";
+                        modal.style.display = "block"; 
+                    });
+                </script>
+            {% endif %}
+            {% endwith %}
+
+            <form id="denunciaForm" method="POST" action="{{ url_for('denunciar') }}" onsubmit="return showConfirmationModal(event)">
+                <div class="form-container">
+                    <!-- Columna izquierda -->
+                    <div class="left-column">
+                        <div class="form-group">
+                            <label for="fecha">Fecha de la denuncia:</label>
+                            <input type="date" name="fecha" id="fecha" required class="input-field">
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="motivo">Motivo de la denuncia:</label>
+                            <input type="text" name="motivo" id="motivo"  required class="input-field">
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="pais">País relacionado con la denuncia:</label>
+                            <input type="text" name="pais" id="pais"  required class="input-field">
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="entidad">Entidad afectada:</label>
+                            <input type="text" name="entidad" id="entidad"  required class="input-field">
+                        </div>
+                    </div>
+            
+                    <!-- Columna derecha -->
+                    <div class="right-column">
+                        <div class="form-group">
+                            <label for="denunciaTextarea">Detalles de la denuncia:</label>
+                            <textarea name="redaccion" id="denunciaTextarea" placeholder="Escribe tu denuncia aquí..." required class="textarea-field"></textarea>
+                        </div>
+                    </div>
+                </div>
+            
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
+            
+        </div>
+    </div>
+
+    <div class="modal" id="ModalConfirmation" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage">¿Estás seguro de que deseas enviar esta denuncia?</p>
+            <button id="modalConfirmBtn">Confirmar</button>
+            <button id="modalCancelBtn">Cancelar</button>
+        </div>
+    </div>
+
+    <div class="modal" id="ModalSuccess" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+    <script>
+
+        function showConfirmationModal(event) {
+            //Previene el envio del formulario
+            event.preventDefault();
+
+            // Mostrar el modal
+            var modal = document.getElementById("ModalConfirmation");
+            modal.style.display = "block";
+
+            // Configurar botones de Confirmar y Cancelar
+            var confirmBtn = document.getElementById("modalConfirmBtn");
+            var cancelBtn = document.getElementById("modalCancelBtn");
+
+            // Acción al hacer clic en Confirmar
+            confirmBtn.onclick = function() {
+                document.getElementById("denunciaForm").submit(); 
+                modal.style.display = "none";
+            };
+
+            // Acción al hacer clic en Cancelar
+            cancelBtn.onclick = function() {
+                modal.style.display = "none"; 
+            };
+
+            return false;
+        }
+
+
+        function closeModal() {
+            var modal = document.getElementById("ModalConfirmation");
+            var modal1 = document.getElementById("ModalSuccess");
+            if (modal)
+            {
+                modal.style.display = "none";
+            }
+            if (modal1)
+            {
+                modal1.style.display = "none";
+            }
+            
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("ModalSuccess");
+            var modal1 = document.getElementById("ModalConfirmation");
+            
+            if (event.target == modal || event.target == modal1){
+                closeModal();
+            }  
+            
+        }
+
+        document.getElementById("denunciaTextarea").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                showConfirmationModal(event);
+            }
+        });
+    </script>
+</body>
+</html>

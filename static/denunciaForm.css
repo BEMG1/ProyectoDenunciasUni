@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Palanquin', sans-serif;
+    background-color: #f5f5f5;
+    /* overflow: hidden; */
+    margin: 0;
+}
+
+.container {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+
+}
+
+.header-icons {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+}
+
+.home-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: transparent;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.home-button:hover {
+    transform: scale(1.1);
+}
+
+.home-icon {
+    width: 30px;
+    height: auto;
+}
+
+.logo {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: transparent;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    z-index: 1000;
+}
+
+.logo-icon {
+    width: 80px;
+    height: auto;
+}
+
+.title {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.subTitle {
+    margin-top: 2%;
+    text-align: center;
+}
+
+.denuncias-subcontainer {
+    margin-top: 50px;
+    background-image: url('/static/images/fondoFormDenuncias.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 30px;
+    color: white;
+}
+
+/* Estructura del formulario */
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    width: 100%;
+}
+
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Columna derecha */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre campos */
+}
+
+/* Campos de entrada */
+.input-field, .textarea-field {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Estilo específico para el textarea */
+.textarea-field {
+    height: 390%;
+}
+
+/* Botón de enviar */
+.submit-btn {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #383838;
+    transform: scale(1.01);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px; 
+}
+
+label {
+    position: absolute;
+    top: -20px;
+    pointer-events: none;
+    font-size: 12px;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4); 
+    padding-top: 60px; 
+}
+
+.modal-content {
+    background-color: rgba(242, 242, 242, 0.9); 
+    margin: 10% auto; 
+    padding: 20px;
+    border: 1px solid #002F6C; 
+    border-radius: 8px; 
+    width: 300px; 
+    position: relative; 
+}
+
+.close {
+    color: #aaa;
+    position: absolute; 
+    top: 10px; 
+    right: 15px; 
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

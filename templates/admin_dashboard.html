@@ -4,31 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
 </head>
 <body>
-    <video class="video-background" autoplay loop muted playsinline>
-        <source src="/static/images/background.mp4" type="video/mp4">
-        Tu navegador no soporta el video 
-    </video>
-    <a href="{{ url_for('logout') }}" class="logout-button">
-        <img src="{{ url_for('static', filename='images/logout.png')}}" alt="salir" class="logout-icon"/>
-    </a>
+    <div class="header-icons">
+        <a href="{{ url_for('logout')}}" class="home-button">
+            <img src="{{ url_for('static', filename='images/atras.png') }}" alt="Inicio" class="home-icon">
+        </a>
+        <h1>ATENDER DENUNCIAS</h1>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="logo" class="logo-icon">
+        </div>
+    </div>
     <div class="containerA">
     <div class="denuncias-subcontainerA">
-    <h2>Dashboard de Administradores</h2>
     <div class="denuncias-scroll-containerA">
         <table class="denuncias-table">
             <thead>
                 <th>Denuncia</th>
-                <th class="fecha-col">Fecha</th>
+                <th>Motivo</th>
+                <th>Pais</th>
+                <th>Entidad</th>
+                <th class="fecha-col">Fecha Denuncia</th>
+                <th class="fecha-col">Fecha Registro</th>
                 <th class="acciones-col">Acciones</th>
             </thead>
             <tbody>
                 {%for denuncia in denuncias %}
                     <tr>
                         <td>{{ denuncia.denuncia }}</td>
-                        <td>{{ denuncia.fecha.strftime('%B %d, %Y %I: %M %p') }}</td>
+                        <td>{{ denuncia.motivo }}</td>
+                        <td>{{ denuncia.pais }}</td>
+                        <td>{{ denuncia.entidad }}</td>
+                        <td>{{ denuncia.fechaRegistro.strftime('%m/%d/%Y %I: %M %p') }}</td>
+                        <td>{{ denuncia.fecha.strftime('%m/%d/%Y %I: %M %p') }}</td>
                         <td>
                             <form action="{{ url_for('delete_denuncia', id=denuncia.id) }}" method="POST" style="display: inline;">
                                 <img src="{{ url_for('static', filename='images/eliminar.png')}}" alt="Eliminar" class="icon-delete" onclick="showConfirmModal(event, '{{ denuncia.id }}');"/>

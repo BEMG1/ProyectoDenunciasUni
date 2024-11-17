@@ -3,60 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='denunciar.css') }}">
     <title>Denuncia Anónima</title>
 </head>
 <body>
-    <video class="video-background" autoplay loop muted playsinline>
-        <source src="/static/images/background.mp4" type="video/mp4">
-        Tu navegador no soporta el video 
-    </video>
-    <a href="{{ url_for('index')}}" class="home-button">
-        <img src="{{ url_for('static', filename='images/casa.png') }}" alt="Inicio" class="home-icon">
-    </a>
+    <div class="header-icons">
+        <a href="{{ url_for('index')}}" class="home-button">
+            <img src="{{ url_for('static', filename='images/atras.png') }}" alt="Inicio" class="home-icon">
+        </a>
+        <h1>ATENDER DENUNCIAS</h1>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="logo" class="logo-icon">
+        </div>
+    </div>
     <div class="containerD">
-        <div class="denuncia-bar" id="denunciaBar" onclick="toggleDenunciaForm()">¿Quieres realizar una denuncia de forma anonima?</div>
+        <div class="denuncia-bar" id="denunciaBar" onclick="toggleDenunciaForm()">
+            <img src="{{ url_for('static', filename='images/mano.png')}}" alt="mano" class="mano-icon">
+            Realizar denuncia
+        </div>
         <div class="radicar-container" id="denunciaForms">
-            <h2>Denunciar Anónimamente</h2>
-            <form id="denunciaForm" method="POST" onsubmit="return showConfirmationModal(event)">
-                <textarea name="denuncia" id="denunciaTextarea" placeholder="Escribe tu denuncia aquí..." required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
             <div class="close-btn" onclick="toggleDenunciaForm()"></div>
         </div>
-        <div class="denuncias-subcontainer" id="denuncias-subcontainer">
-            <h3>Denuncias Existentes:</h3>
-            <div class="denuncias-scroll-container">
-            <table class="denuncias-table">
-                <thead>
-                    <tr>
-                        <th>Denuncia</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for denuncia in denuncias %}
+        <div class="denuncias-container">
+            <div class="denuncias-subcontainer" id="denuncias-subcontainer">
+                <div class="denuncias-scroll-container">
+                <table class="denuncias-table">
+                    <thead>
                         <tr>
-                            <td>{{ denuncia.denuncia }}</td>
-                            <td>{{ denuncia.fecha.strftime('%B %d, %Y %I:%M %p') }}</td>
+                            <th>Denuncia</th>
+                            <th>Motivo</th>
+                            <th>Pais</th>
+                            <th>Entidad</th>
+                            <th class="fecha-col">Fecha Denuncia</th>
+                            <th class="fecha-col">Fecha Registro</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for denuncia in denuncias %}
+                            <tr>
+                                <td>{{ denuncia.denuncia }}</td>
+                                <td>{{ denuncia.motivo }}</td>
+                                <td>{{ denuncia.pais }}</td>
+                                <td>{{ denuncia.entidad }}</td>
+                                <td>{{ denuncia.fechaRegistro.strftime('%m/%d/%Y %I: %M %p') }}</td>
+                                <td>{{ denuncia.fecha.strftime('%m/%d/%Y %I: %M %p') }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        var modal = document.getElementById("ModalSuccess");
-                        var modal1 = document.getElementById("ModalConfirmation");
-                        var modalMessage = document.getElementById("modalMessage");
-                        modalMessage.textContent = "{{ messages[0] }}";
-                        modal.style.display = "block"; 
-                    });
-                </script>
-            {% endif %}
-        {% endwith %}
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            var modal = document.getElementById("ModalSuccess");
+                            var modal1 = document.getElementById("ModalConfirmation");
+                            var modalMessage = document.getElementById("modalMessage");
+                            modalMessage.textContent = "{{ messages[0] }}";
+                            modal.style.display = "block"; 
+                        });
+                    </script>
+                {% endif %}
+            {% endwith %}
+            </div>
         </div>
     </div>
 
@@ -77,19 +86,7 @@
     <script>
 
         function toggleDenunciaForm() {
-            var formContainer = document.getElementById("denunciaForms");
-            var barElement = document.getElementById("denunciaBar");
-            var subcontainer = document.getElementById("denuncias-subcontainer");
-
-            if (formContainer.classList.contains("active")) {
-                formContainer.classList.remove("active");
-                barElement.classList.remove("hidden");
-                subcontainer.classList.remove("hidden");
-            } else {
-                subcontainer.classList.add("hidden");
-                formContainer.classList.add("active");
-                barElement.classList.add("hidden");
-            }
+            window.location.href = '/denunciaForm';
         }
 
         function showConfirmationModal(event) {

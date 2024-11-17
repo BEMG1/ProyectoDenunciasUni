@@ -12,6 +12,7 @@ html, body {
     justify-content: center;
     align-items: center;
     background-color: #f5f5f5;
+    overflow: hidden;
 }
 
 .container {
@@ -94,7 +95,7 @@ html, body {
 }
 
 .large-text {
-    font-size: 200px;
+    font-size: 170px;
     font-weight: bold;
     position: absolute;
     bottom: 30%;
@@ -151,7 +152,7 @@ html, body {
 }
 
 .anonymous-logo {
-    width: 420px;
+    width: 350px;
 }
 
 .friends-logo {

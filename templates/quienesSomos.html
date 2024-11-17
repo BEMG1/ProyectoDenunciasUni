@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='quienesSomos.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet'>
+    <title>Denuncia Anónima</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <div class="header-icons">
+                <a href="{{ url_for('index')}}" class="home-button">
+                    <img src="{{ url_for('static', filename='images/atras.png') }}" alt="Inicio" class="home-icon">
+                </a>
+                <h1>¿Quines Somos?</h1>
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="logo" class="logo-icon">
+                </div>
+
+            </div>
+            
+            <div class="subTitle">
+                <p>Una compañía de denuncias que se dedica a ofrecer un canal seguro, confidencial y ético para que empleados, clientes o cualquier persona pueda reportar irregularidades o malas prácticas dentro de una organización. Nos especializamos en la recepción, gestión y seguimiento de denuncias relacionadas con fraudes, acoso laboral, discriminación, corrupción o cualquier comportamiento que vaya en contra de los valores o las políticas internas de una empresa.
+                    Nuestro objetivo principal es garantizar que estas denuncias se manejen con total transparencia, confidencialidad y profesionalismo, fomentando una cultura de integridad y cumplimiento. También trabajamos en colaboración con las empresas para analizar los casos reportados, identificar riesgos y recomendar medidas correctivas que fortalezcan su ambiente laboral y reputación.</p>
+            </div>
+        </div>
+    </div>
+    <div class="containerQueinesSomos">
+        <div class="subContainer left">
+            <h1>Canales de atención</h1>
+            <div class="espacio"></div>
+            <h3 class="text-left-small">Teléfono: +1 (555) 123-4567</h3>
+            <div class="espacio"></div>
+            <h3 class="text-left-large">Fax: +1 (555) 987-6543</h3>
+            <div class="espacio"></div>
+            <p>Correo electrónico: <br> denuncias@anonymouscomplaint.com</p>
+        </div>
+        <div class="subContainer right">
+            <img src="{{ url_for('static', filename='images/LogoWithe.png') }}" alt="Logo" class="icon-logo-withe">
+            <div class="espacio"></div>
+            <h2>BOGOTA D.C. - COLOMBIA</h2>
+            <p class="interlineado">Dirección: 1234 Avenida Ética, Piso 5, <br> Ciudad Segura, Estado <br> Transparente, CP 67890</p>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+pip install Flask
+pip install Flask-SQLAlchemy
+pip install Flask-Login
+pip install Werkzeug
+pip install pytz
+pip install Flask-WTF
+pip install WTForms
+pip install Flask-Mail
+pip install email-validator
