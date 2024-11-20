@@ -27,7 +27,7 @@
                 <th>Entidad</th>
                 <th class="fecha-col">Fecha De Los Hechos</th>
                 <th class="fecha-col">Fecha Denuncia</th>
-                <th class="acciones-col">Acciones</th>
+                <th >Acciones</th>
             </thead>
             <tbody>
                 {%for denuncia in denuncias %}
@@ -38,13 +38,12 @@
                         <td>{{ denuncia.entidad }}</td>
                         <td>{{ denuncia.fecha.strftime('%m/%d/%Y') }}</td>
                         <td>{{ denuncia.fechaRegistro.strftime('%m/%d/%Y %I: %M %p') }}</td>
-                        <td>
+                        <td >
                             <form action="{{ url_for('delete_denuncia', id=denuncia.id, action='eliminar') }}" method="POST" style="display: inline;">
-                                <img src="{{ url_for('static', filename='images/eliminar.png')}}" alt="Eliminar" class="icon-delete" onclick="showConfirmModal(event, '{{ denuncia.id }}');"/>
+                                <img src="{{ url_for('static', filename='images/eliminar.png')}}" alt="Eliminar" class="icon-delete" data-id="{{ denuncia.id }}" />
+                                <img src="{{ url_for('static', filename='images/enviar.png') }}" alt="Enviar a Fiscalia" class="icon-send" data-id="{{ denuncia.id }}" />
                             </form>
-                            <form action="{{ url_for('delete_denuncia', id=denuncia.id, action='enviar') }}" method="POST" style="display: inline;">
-                                <img src="{{ url_for('static', filename='images/enviar.png') }}" alt="Enviar a Fiscalia" class="icon-send" onclick="showSendModal(event, '{{ denuncia.id }}');"/>
-                            </form>
+                        
                         </td>
                     </tr>
                 {% endfor %}
@@ -57,21 +56,11 @@
 <!-- Modal de confirmación -->
 <div id="confirmModal" class="modal">
     <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <p>¿Estás seguro de que quieres eliminar esta denuncia?</p>
+        <span class="close" id="closeModal" onclick="closeModal()">&times;</span>
+        <p></p>
         <div class="buttons">
-            <button id="confirmDelete" >Eliminar</button>
-            <button id="cancelDelete" >Cancelar</button>
-        </div>
-    </div>
-</div>
-<div id="sendModal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <p>¿Estás seguro de que deseas enviar esta denuncia a la fiscalía?</p>
-        <div class="buttons">
-            <button id="confirmDelete">Sí, enviar</button>
-            <button id="cancelDelete">No, cancelar</button>
+            <button class="modal-button" id="confirmDelete" ></button>
+            <button class="modal-button" id="cancelDelete" >Cancelar</button>
         </div>
     </div>
 </div>
@@ -89,7 +78,7 @@
         {% endwith %}
         <div class="modal" id="ModalDelete" style="display:none;">
             <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
+                 <span class="close" onclick="closeModalD()">&times;</span>
                 <p id="modalMessage"></p>
             </div>
         </div>
@@ -105,11 +94,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    
-    function closeModal() {
+    function closeModalD() {
             var modal = document.getElementById("ModalDelete");
             modal.style.display = "none";
-            // document.getElementById("ModalError").style.display = "none";
+
         }
         window.onclick = function(event) {
             var modal = document.getElementById("ModalDelete");
@@ -118,37 +106,31 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
+    function closeModal() {
+        const confirmModal = document.getElementById("confirmModal");
+        confirmModal.style.display = "none";
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
     let deleteForm;
 
-    function showConfirmModal(event, id) {
+    function showConfirmModal(event, id, action) {
         event.preventDefault(); 
         deleteForm = event.target.closest('form'); 
 
         // Muestra el modal
         const confirmModal = document.getElementById("confirmModal");
-        confirmModal.style.display = 'block';
-    }
-
-    function showSendModal(event, id) {
-        event.preventDefault(); 
-        deleteForm = event.target.closest('form'); 
-
-        // Muestra el modal
-        const sendModal = document.getElementById("sendModal");
-        sendModal.style.display = 'block';
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        const closeModal = document.getElementById("closeModal");
+        const modalMessage = confirmModal.querySelector("p");
         
-        const confirmDelete = document.getElementById("confirmDelete");
-        const cancelDelete = document.getElementById("cancelDelete");
+        if (action === "eliminar") {
+            modalMessage.textContent = "¿Estás seguro de que quieres eliminar esta denuncia?";
+            document.getElementById("confirmDelete").textContent = "Eliminar";
+        } else if (action === "enviar") {
+            modalMessage.textContent = "¿Estás seguro de que deseas enviar esta denuncia a la fiscalía?";
+            document.getElementById("confirmDelete").textContent = "Sí, enviar";
+        }
 
-        closeModal.onclick = function() {
-            document.getElementById("confirmModal").style.display = "none";
-            document.getElementById("sendmodal").style.display = "none";
-        };
-
+        // Actualiza la acción del botón confirm
         confirmDelete.onclick = function() {
             if (deleteForm) {
                 console.log("Submitting form:", deleteForm);
@@ -156,17 +138,28 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         };
 
-        cancelDelete.onclick = function() {
-            document.getElementById("confirmModal").style.display = "none";
-        };
+        confirmModal.style.display = 'block';
+    }
 
-        window.onclick = function(event) {
-            const confirmModal = document.getElementById("confirmModal");
-            if (event.target === confirmModal) {
-                confirmModal.style.display = "none";
-            }
-        };
+    
+
+    window.onclick = function(event) {
+        const confirmModal = document.getElementById("confirmModal");
+        if (event.target === confirmModal) {
+            closeModal();
+        }
+    };
+
+
+    // Attach event listeners to the icons
+    document.querySelectorAll(".icon-delete").forEach(icon => {
+        icon.addEventListener("click", (event) => showConfirmModal(event, icon.dataset.id, "eliminar"));
     });
+
+    document.querySelectorAll(".icon-send").forEach(icon => {
+        icon.addEventListener("click", (event) => showConfirmModal(event, icon.dataset.id, "enviar"));
+    });
+});
 </script>
 </body>
 </html>

@@ -145,15 +145,12 @@ def denunciar():
 def delete_denuncia(id, action):
     denuncia = Denuncia.query.get_or_404(id)  # Buscar la denuncia por ID
 
-    if action == 'eliminar':
-        # Eliminar la denuncia de la base de datos
-        db.session.delete(denuncia)
-        db.session.commit()  # Guardar los cambios
-        flash('Denuncia eliminada con éxito', 'success')
-    elif action == 'enviar':
-        # Lógica para "enviar a la fiscalía" (sin eliminar la denuncia)
-        # En este caso solo mostramos un mensaje sin necesidad de modificar la base de datos
-        flash('Denuncia enviada a la fiscalía con éxito', 'success')
+
+    # Eliminar la denuncia de la base de datos
+    db.session.delete(denuncia)
+    db.session.commit()  # Guardar los cambios
+
+    flash('Proceso realizado con exito', 'success') #Mensaje de confirmación
 
     return redirect(url_for('admin_dashboard'))  # Redirigir al dashboard del admin
 
