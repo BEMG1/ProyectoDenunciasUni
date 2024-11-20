@@ -140,14 +140,28 @@ def denunciar():
     return render_template('denunciar.html', denuncias=denuncias)
 
 # Ruta para eliminar una denuncia (requiere estar logueado)
-@app.route('/delete_denuncia/<int:id>', methods=['POST'])
+@app.route('/delete_denuncia/<int:id>/<action>', methods=['POST'])
 @login_required
-def delete_denuncia(id):
+def delete_denuncia(id, action):
     denuncia = Denuncia.query.get_or_404(id)  # Buscar la denuncia por ID
-    db.session.delete(denuncia)  # Eliminar la denuncia de la base de datos
-    db.session.commit()  # Guardar los cambios
-    flash('Denuncia eliminada con éxito', 'success')  # Mensaje de éxito
+
+    if action == 'eliminar':
+        # Eliminar la denuncia de la base de datos
+        db.session.delete(denuncia)
+        db.session.commit()  # Guardar los cambios
+        flash('Denuncia eliminada con éxito', 'success')
+    elif action == 'enviar':
+        # Lógica para "enviar a la fiscalía" (sin eliminar la denuncia)
+        # En este caso solo mostramos un mensaje sin necesidad de modificar la base de datos
+        flash('Denuncia enviada a la fiscalía con éxito', 'success')
+
     return redirect(url_for('admin_dashboard'))  # Redirigir al dashboard del admin
+
+@app.route('/send_to_fiscalia/<int:id>', methods=['POST'])
+def send_to_fiscalia(id):
+    # Lógica para enviar la denuncia a la fiscalía
+    flash('Denuncia enviada a la fiscalía.')
+    return redirect(url_for('admin_dashboard'))
 
 # Ruta para cerrar sesión
 @app.route('/logout')

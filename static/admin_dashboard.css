@@ -191,6 +191,17 @@ html, body {
     /* box-shadow: 0 0 5px rgba(61, 58, 39, 0.6); */
 }
 
+.icon-send {
+    width: 20px; 
+    height: auto; 
+    transition: transform 0.3s;
+    margin-left: 40%;
+}
+
+.icon-send:hover {
+    transform: scale(1.3);
+}
+
 
 /* Estilos del modal Admin */
 .modal {

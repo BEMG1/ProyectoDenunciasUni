@@ -34,8 +34,8 @@
                             <th>Motivo</th>
                             <th>Pais</th>
                             <th>Entidad</th>
-                            <th class="fecha-col">Fecha Denuncia</th>
                             <th class="fecha-col">Fecha Registro</th>
+                            <th class="fecha-col">Fecha De Los Hechos</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,8 +45,8 @@
                                 <td>{{ denuncia.motivo }}</td>
                                 <td>{{ denuncia.pais }}</td>
                                 <td>{{ denuncia.entidad }}</td>
+                                <td>{{ denuncia.fecha.strftime('%m/%d/%Y') }}</td>
                                 <td>{{ denuncia.fechaRegistro.strftime('%m/%d/%Y %I: %M %p') }}</td>
-                                <td>{{ denuncia.fecha.strftime('%m/%d/%Y %I: %M %p') }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

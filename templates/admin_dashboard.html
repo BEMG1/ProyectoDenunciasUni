@@ -25,8 +25,8 @@
                 <th>Motivo</th>
                 <th>Pais</th>
                 <th>Entidad</th>
+                <th class="fecha-col">Fecha De Los Hechos</th>
                 <th class="fecha-col">Fecha Denuncia</th>
-                <th class="fecha-col">Fecha Registro</th>
                 <th class="acciones-col">Acciones</th>
             </thead>
             <tbody>
@@ -36,12 +36,14 @@
                         <td>{{ denuncia.motivo }}</td>
                         <td>{{ denuncia.pais }}</td>
                         <td>{{ denuncia.entidad }}</td>
+                        <td>{{ denuncia.fecha.strftime('%m/%d/%Y') }}</td>
                         <td>{{ denuncia.fechaRegistro.strftime('%m/%d/%Y %I: %M %p') }}</td>
-                        <td>{{ denuncia.fecha.strftime('%m/%d/%Y %I: %M %p') }}</td>
                         <td>
-                            <form action="{{ url_for('delete_denuncia', id=denuncia.id) }}" method="POST" style="display: inline;">
+                            <form action="{{ url_for('delete_denuncia', id=denuncia.id, action='eliminar') }}" method="POST" style="display: inline;">
                                 <img src="{{ url_for('static', filename='images/eliminar.png')}}" alt="Eliminar" class="icon-delete" onclick="showConfirmModal(event, '{{ denuncia.id }}');"/>
-                                
+                            </form>
+                            <form action="{{ url_for('delete_denuncia', id=denuncia.id, action='enviar') }}" method="POST" style="display: inline;">
+                                <img src="{{ url_for('static', filename='images/enviar.png') }}" alt="Enviar a Fiscalia" class="icon-send" onclick="showSendModal(event, '{{ denuncia.id }}');"/>
                             </form>
                         </td>
                     </tr>
@@ -63,6 +65,16 @@
         </div>
     </div>
 </div>
+<div id="sendModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <p>¿Estás seguro de que deseas enviar esta denuncia a la fiscalía?</p>
+        <div class="buttons">
+            <button id="confirmDelete">Sí, enviar</button>
+            <button id="cancelDelete">No, cancelar</button>
+        </div>
+    </div>
+</div>
 {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <script>
@@ -81,9 +93,11 @@
                 <p id="modalMessage"></p>
             </div>
         </div>
+        
+
 <script>
 
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
         const isAuthenticated = document.getElementById("auth-status").dataset.authenticated === 'true'
         console.log("User authenticated:", isAuthenticated);
         if (!isAuthenticated) {
@@ -115,13 +129,24 @@
         confirmModal.style.display = 'block';
     }
 
+    function showSendModal(event, id) {
+        event.preventDefault(); 
+        deleteForm = event.target.closest('form'); 
+
+        // Muestra el modal
+        const sendModal = document.getElementById("sendModal");
+        sendModal.style.display = 'block';
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         const closeModal = document.getElementById("closeModal");
+        
         const confirmDelete = document.getElementById("confirmDelete");
         const cancelDelete = document.getElementById("cancelDelete");
 
         closeModal.onclick = function() {
             document.getElementById("confirmModal").style.display = "none";
+            document.getElementById("sendmodal").style.display = "none";
         };
 
         confirmDelete.onclick = function() {
